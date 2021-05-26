@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Jobs {% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %} 
+<div class="card">
+    <form class="form-inline ml-2" method="POST" action="/">
+        {% csrf_token %}
+        <div class="mr-2">
+            {{ MainSearchForm.job|as_crispy_field }}
+        </div>
+        <div class="mr-2">
+            {{ MainSearchForm.locations|as_crispy_field }}
+        </div>
+        <div class="mr-2">
+            {{ MainSearchForm.hours|as_crispy_field }}
+        </div>
+        <div class="mr-2">
+            {{ MainSearchForm.careertype|as_crispy_field }}
+        </div>
+        {% comment %} <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> {% endcomment %}
+        <button type="submit" class="btn btn-outline-primary">search</button>
+    </form>
+</div>
+{% for item in jobs %}
+<div class="card">
+<a href="/job/{{item.id}}">
+  <div class="card-body">
+    <h5 class="card-title">{{item.title}}</h5>
+    <p class="card-text">
+      {{item.location}} - {{item.hours}} - {{item.careertype}}
+    </p>
+  </div>
+  </a>
+</div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Job Search {% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %} 
+<div class="d-flex align-items-center justify-content-center ml-5" style="height: 80%;" >
+    <form class="form-inline" method="POST" action="/">
+        {% csrf_token %}
+        <div class="">
+            {{ MainSearchForm.job|as_crispy_field }}
+        </div>
+        <div class="mr-2">
+            {{ MainSearchForm.locations|as_crispy_field }}
+        </div>
+        <div class="mr-2">
+            {{ MainSearchForm.hours|as_crispy_field }}
+        </div>
+        <div class="mr-2">
+            {{ MainSearchForm.careertype|as_crispy_field }}
+        </div>
+        {% comment %} <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> {% endcomment %}
+        <button type="submit" class="btn btn-outline-primary">search</button>
+    </form>
+</div>
+{% endblock %}

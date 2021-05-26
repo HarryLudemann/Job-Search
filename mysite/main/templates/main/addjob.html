@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Job Search {% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %} 
+<div class="d-flex align-items-center justify-content-center ml-5" >
+    <form class="id-personal-data-form mt-5" method="POST" style="min-width:60%;">
+        {% csrf_token %}
+        {{ addjobform.title|as_crispy_field }}
+        {{ addjobform.company|as_crispy_field }}
+        {{ addjobform.email|as_crispy_field }}
+        {{ addjobform.locations|as_crispy_field }}
+        {{ addjobform.careertype|as_crispy_field }} 
+        {{ addjobform.hours|as_crispy_field }} <br>
+        {{ addjobform.description|as_crispy_field }}
+        <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Register As Student {% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %} 
+<div class="d-flex align-items-center justify-content-center ml-5" style="height: 80%;" >
+    <form class="form-rows" method="POST" action="/">
+        {% csrf_token %}
+        {{form|crispy}}
+        {% comment %} <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> {% endcomment %}
+        <button type="submit" class="btn btn-outline-primary">Apply</button>
+    </form>
+</div>
+{% endblock %}

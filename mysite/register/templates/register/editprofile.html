@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Hazzahs{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">  
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        {{form|crispy}}
+        {% csrf_token %}
+        <p> Check Boxes only shown for development, will only be accessable by admin in production </p>
+        {{ occupation.employer|as_crispy_field }}
+        {{ occupation.student|as_crispy_field }}
+        <button type="submit" class ="btn btn-success">Update</button>
+    </form>
+</div>
+{% endblock %}
