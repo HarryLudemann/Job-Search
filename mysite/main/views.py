@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import redirect
+
+from django.shortcuts import render, redirect
 from .forms import SearchJob, AddJob, EmployerApplication, StudentApplication
 from main.models import Locations, CareerType, TimePerWeek, Jobs
 from register.models import Occupation
+from django.contrib import messages #import messages
+
 
 #Checks if employer
 def CheckEmployer(response):
@@ -60,7 +61,6 @@ def addjob(response):
         addjobform = AddJob(response.POST)
         if addjobform.is_valid():
             # Get Form Choices
-            print(str(addjobform.cleaned_data["title"]))
             q = Jobs(
                 title=addjobform.cleaned_data["title"],
                 company=addjobform.cleaned_data["company"],
@@ -70,6 +70,7 @@ def addjob(response):
                 hours=addjobform.cleaned_data["hours"]
                 )
             q.save()
+            messages.success(response, 'A job has successfully been added')
             return redirect('/')
         else:  
             print('Adding Job Failed')
@@ -91,11 +92,19 @@ def about(response):
 
 
 def studentreg(response):
-    form = StudentApplication()
-    return render(response, "main/applystudent.html", {"employer":CheckEmployer(response), "form":form})
+    if response.method == "POST":
+        messages.success(response, 'A application has successfully been submitted')
+        return redirect("/home")
+    else:
+        form = StudentApplication()
+        return render(response, "main/applystudent.html", {"employer":CheckEmployer(response), "form":form})
 
 
 def employerreg(response):
-    form = EmployerApplication()
-    return render(response, "main/applyemployer.html", {"employer":CheckEmployer(response), "form":form})
+    if response.method == "POST":
+        messages.success(response, 'A application has successfully been submitted')
+        return redirect("/home")
+    else:
+        form = EmployerApplication()
+        return render(response, "main/applyemployer.html", {"employer":CheckEmployer(response), "form":form})
 
