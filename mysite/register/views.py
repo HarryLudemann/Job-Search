@@ -17,8 +17,6 @@ from django.utils.encoding import force_bytes
 from django.contrib import messages #import messages
 
 # Checks if employer
-
-
 def CheckEmployer(response):
     obj = Occupation.objects.all()
     if (obj.filter(userid=response.user.id).exists()):
@@ -32,8 +30,6 @@ def CheckEmployer(response):
         return False
 
 # Create your views here.
-
-
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)

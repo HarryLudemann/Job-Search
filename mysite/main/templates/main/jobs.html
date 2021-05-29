@@ -23,6 +23,32 @@
         <button type="submit" class="btn btn-outline-primary">search</button>
     </form>
 </div>
+{% comment %} <div class="card">
+
+  <!--Card content-->
+  <div class="card-body">
+
+    <!-- Container -->
+    <div class="d-block d-md-flex">
+
+      {% for item in jobs %}
+      <!-- Column -->
+      <a href="/job/{{item.id}}">
+      <div class="p-3 flex-1 ml-5 mr-5" style="min-width:33%;">
+
+        <h3 class="pb-3 font-weight-bold">{{item.title}}</h2>
+        <p align="justify">{{item.description}}</p>
+
+      </div>
+      </a>
+      <!-- Column -->
+      {% endfor %}
+
+    </div>
+    <!-- Container -->
+
+  </div>
+</div> {% endcomment %}
 {% for item in jobs %}
 <div class="card">
 <a href="/job/{{item.id}}">
