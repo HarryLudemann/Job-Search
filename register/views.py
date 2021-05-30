@@ -49,8 +49,7 @@ def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
         if form.is_valid():
-            user = User.objects.create_user('form.cleaned_data["username"]',form.cleaned_data["email"] , form.cleaned_data["password"])
-            user.save()
+            form.save()
             messages.success(response, 'Settings Successfully Updated')
         return redirect("/login")
     else:
