@@ -4,7 +4,7 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container">  
+<div class="container bg-{{theme}} text-{% if theme == "light" %}dark{% else %}light{%endif%}">  
     <form method="POST" class="form-group">
         {% csrf_token %}
         {{form|crispy}}
