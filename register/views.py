@@ -148,3 +148,8 @@ def password_reset_request(request):
 
 def passworddone(request):
     return redirect("/", {"theme":CheckDarkTheme(request)})
+
+
+def passwordchange(request):
+    passwordchangeform = PasswordChangeForm()
+    return render(request, "register/change-password.html",{"form":passwordchangeform, "theme":CheckDarkTheme(request)})
