@@ -55,8 +55,7 @@ def register(response):
         return redirect("/")
     else:
         form = RegisterForm()
-
-    return render(response, "register/register.html", {"form": form, 'theme':CheckDarkTheme(response)})
+        return render(response, "register/register.html", {"form": form, 'theme':CheckDarkTheme(response)})
 
 
 def editprofile(response):
