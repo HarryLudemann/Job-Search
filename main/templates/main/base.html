@@ -57,8 +57,8 @@
             class="navbar-toggler "
             type="button"
             data-mdb-toggle="collapse"
-            data-mdb-target="#navbarButtonsExample"
-            aria-controls="navbarButtonsExample"
+            data-mdb-target="#navbarButtons"
+            aria-controls="navbarButtons"
             aria-expanded="false"
             aria-label="Toggle navigation"
             >
@@ -66,111 +66,111 @@
             </button>
 
             <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarButtonsExample">
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <a class="nav-link" style="color: black; font-size: 18px;" href="/">Job Search</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarButtons">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link" style="color: black; font-size: 18px;" href="/">Job Search</a>
+                    </li>
+                </ul>
 
-            {% comment %} About  {% endcomment %}
-            <ul class="navbar-nav ">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/about">About</a>
-                </li>
-            </ul>
-            {% comment %} <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-            </ul> {% endcomment %}
-           {% if user.is_authenticated %}
-            {% comment %} Student Dropdown {% endcomment %}
-            <ul class="navbar-nav">
-                <!-- Dropdown -->
-                <li class="nav-item dropdown">
-                    <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-mdb-toggle="dropdown"
-                    aria-expanded="false"
-                    >
-                    Student
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li>
-                        <a class="dropdown-item" href="/studentreg">Register As Student</a>
+                {% comment %} About  {% endcomment %}
+                <ul class="navbar-nav ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="/">Look For Job</a>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/about">About</a>
                     </li>
-                    </ul>
-                </li>
-            </ul>
-            {% comment %} Employer Dropdown {% endcomment %}
-            <ul class="navbar-nav">
-                <!-- Dropdown -->
-                <li class="nav-item dropdown">
-                    <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-mdb-toggle="dropdown"
-                    aria-expanded="false"
-                    >
-                    Employer
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li>
-                        <a class="dropdown-item" href="/employerreg">Register As Employer</a>
+                </ul>
+                {% comment %} <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
                     </li>
-                    {% if employer %}
-                    <li>
-                        <a class="dropdown-item" href="/addjob">Add Job</a>
-                    </li>
-                    {%endif%}
-                    </ul>
-                </li>
-            </ul>
-            {% endif %}
-             
-            <!-- Profile links -->
+                </ul> {% endcomment %}
             {% if user.is_authenticated %}
-            <ul class="navbar-nav">
-                <!-- Dropdown -->
-                <li class="nav-item dropdown">
-                    <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-mdb-toggle="dropdown"
-                    aria-expanded="false"
-                    >
-                    {{user.username|upper}}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li>
-                        <a class="dropdown-item" href="/editprofile">Edit Profile</a>
+                {% comment %} Student Dropdown {% endcomment %}
+                <ul class="navbar-nav">
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                        >
+                        Student
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="/studentreg">Register As Student</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/">Look For Job</a>
+                        </li>
+                        </ul>
                     </li>
-                    {% if employer %}
-                    <li>
-                        <a class="dropdown-item" href="/addjob">Add Job</a>
+                </ul>
+                {% comment %} Employer Dropdown {% endcomment %}
+                <ul class="navbar-nav">
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                        >
+                        Employer
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="/employerreg">Register As Employer</a>
+                        </li>
+                        {% if employer %}
+                        <li>
+                            <a class="dropdown-item" href="/addjob">Add Job</a>
+                        </li>
+                        {%endif%}
+                        </ul>
                     </li>
-                    {%endif%}
-                    <li>
-                        <a class="dropdown-item" href="/logout">Logout</a>
+                </ul>
+                {% endif %}
+                
+                <!-- Profile links -->
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav">
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                        >
+                        {{user.username|upper}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="/editprofile">Edit Profile</a>
+                        </li>
+                        {% if employer %}
+                        <li>
+                            <a class="dropdown-item" href="/addjob">Add Job</a>
+                        </li>
+                        {%endif%}
+                        <li>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </li>
+                        </ul>
                     </li>
-                    </ul>
-                </li>
-            </ul>
+                </ul>
             {% else %}
                 <div class="d-flex align-items-center">
                     <a href="/login"><button type="button" class="btn btn-link px-3 me-2 text-theme">
