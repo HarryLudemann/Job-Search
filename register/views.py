@@ -50,7 +50,7 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
-            messages.success(response, 'Settings Successfully Updated')
+            messages.success(response, 'Accouny Successfully Created')
         return redirect("/login")
     else:
         form = RegisterForm()
