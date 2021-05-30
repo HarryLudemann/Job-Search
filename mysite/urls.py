@@ -22,7 +22,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('register/', v.register, name="register"),
     path('editprofile/', v.editprofile, name="editprofile"),
-    # path('password/', v.password, name="password"),
+    path('password/', auth_views.PasswordChangeView.as_view(template_name="register/change-password.html")),
     path('admin/', admin.site.urls),
     # path('', include("django.contrib.auth.urls")),
     # path('accounts/', include('django.contrib.auth.urls')),
