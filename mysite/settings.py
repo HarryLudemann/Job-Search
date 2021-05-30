@@ -21,14 +21,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r9msy-5kyf3kg1=yj7w(z+1&70&3b51(@%va#vnnl1n%*!t6+d'
+SECRET_KEY = '(-pklp2vyme_mj99dvt#gzc!j+v5_$$7=uj!s&j@ug^_qix0wb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ['studentjobsearch.herokuapp.com']
 DEBUG_PROPAGATE_EXCEPTIONS = True
-
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 # Application definition
 
