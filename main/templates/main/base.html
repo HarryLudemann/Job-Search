@@ -47,9 +47,9 @@
         </style>
     </head>
 
-    <body>
+    <body class="bg-{{theme}} text-{% if theme == "light" %}dark{% else %}light{%endif%}">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-{{theme}} bg-{{theme}}">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">Job Search</a>
                 <button

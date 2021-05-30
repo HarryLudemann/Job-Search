@@ -3,11 +3,11 @@ from django.contrib.auth.forms import UserChangeForm
 from django.http import request
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, EditProfile, OccupationForm
+from .forms import RegisterForm, EditProfile, OccupationForm, ThemeForm
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.models import User
 from django.views import generic
-from register.models import Occupation
+from register.models import Occupation, Themes
 from django.contrib.auth.forms import PasswordResetForm
 from django.template.loader import render_to_string
 from django.db.models.query_utils import Q
@@ -15,6 +15,19 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages #import messages
+
+# Checks theme
+def CheckDarkTheme(response):
+    obj = Themes.objects.all()
+    if (obj.filter(userid=response.user.id).exists()):
+        obj = obj.filter(userid=response.user.id)
+        for item in obj:
+            if (item.theme == "dark"):
+                return 'dark'
+            else:
+                return 'light'
+    else:
+        return 'light'
 
 # Checks if employer
 def CheckEmployer(response):
@@ -33,13 +46,19 @@ def CheckEmployer(response):
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
+        themeform = ThemeForm(response.POST)
         if form.is_valid():
             form.save()
+        if themeform.is_valid():
+            obj = Themes(
+                userid=response.user.id, theme=themeform.cleaned_data["theme"])
+            obj.save()
         return redirect("/")
     else:
         form = RegisterForm()
+        themeform = ThemeForm()
 
-    return render(response, "register/register.html", {"form": form})
+    return render(response, "register/register.html", {"form": form, "themeform":themeform, 'theme':CheckDarkTheme(response)})
 
 
 def editprofile(response):
@@ -58,6 +77,16 @@ def editprofile(response):
             obj = Occupation(
                 userid=response.user.id, student=occupationform.cleaned_data["student"], employer=occupationform.cleaned_data["employer"])
             obj.save()
+
+        obj = Themes.objects.all()
+        if (obj.filter(userid=response.user.id).exists()):
+            obj.filter(userid=response.user.id).delete()
+
+        themeform = ThemeForm(response.POST)
+        if themeform.is_valid():
+            print(str(response.user.id))
+            obj = Themes(theme=themeform.cleaned_data["theme"], userid=response.user.id)
+            obj.save()
         messages.success(response, 'Settings Successfully Updated')
         return redirect("/")
     else:
@@ -68,9 +97,18 @@ def editprofile(response):
             for item in obj:  # Can only be one, obj is only iterable
                 occupationform = OccupationForm(
                     initial={"student": item.student, "employer": item.employer})
+        if (obj.filter(userid=response.user.id).exists()):
+            obj = obj.filter(userid=response.user.id)
+            for item in obj:  # Can only be one, obj is only iterable
+                if (item.theme == 'dark'):
+                    theme = 2
+                else:
+                    theme = 1
+                themeform = ThemeForm(initial={"theme": theme})
         else:
             occupationform = OccupationForm()
-        return render(response, "register/editprofile.html", {"form": form, "occupation": occupationform, "employer": CheckEmployer(response)})
+            themeform = ThemeForm(instance=response.user)
+        return render(response, "register/editprofile.html", {"form": form, "occupation": occupationform, "employer": CheckEmployer(response), "themeform": themeform, 'theme':CheckDarkTheme(response)})
 
         # "username":response.user.username, "email":response.user.email
 

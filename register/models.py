@@ -10,3 +10,11 @@ class Occupation(models.Model):
         return self.userid
         return self.employer
         return self.student
+
+class Themes(models.Model):
+    userid = models.CharField(max_length=20)
+    theme = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.userid
+        return self.theme
