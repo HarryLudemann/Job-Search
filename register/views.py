@@ -53,7 +53,7 @@ def register(response):
             form.save()
             user = User.objects.create_user('form.cleaned_data["username"]',form.cleaned_data["email"] , form.cleaned_data["password"])
             user.save()
-            return redirect("pages:home")
+            return redirect("/")
     else:
         form = RegisterForm()
         return render(response, "register/register.html", {"form": form, 'theme':CheckDarkTheme(response)})
