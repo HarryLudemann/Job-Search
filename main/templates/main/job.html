@@ -4,9 +4,9 @@
 
 {% block content %} 
 {% for item in job %}
-<div class="card">
+<div class="card m-5">
   <div class="card-body">
-    <h4 class="card-title">{{item.title}}</h4>
+    <h4 class="card-title">{{item.title|upper}}</h4>
     <h6> {{item.location}} - {{item.hours}} - {{item.careertype}}</h6>
     <p class="card-text">
     {{item.description}}

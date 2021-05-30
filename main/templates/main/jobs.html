@@ -49,17 +49,19 @@
 
   </div>
 </div> {% endcomment %}
-{% for item in jobs %}
-<div class="card">
-<a href="/job/{{item.id}}">
-  <div class="card-body">
-    <h5 class="card-title">{{item.title}}</h5>
-    <p class="card-text">
-      {{item.location}} - {{item.hours}} - {{item.careertype}}
-    </p>
+<div class="m-5">
+  {% for item in jobs %}
+  <div class="card">
+    <a href="/job/{{item.id}}">
+      <div class="card-body">
+        <h5 class="card-title">{{item.title|upper}}</h5>
+        <p class="card-text">
+          {{item.location}} - {{item.hours}} - {{item.careertype}} - Listed: {{item.date}} <br>
+          {{item.description|truncatechars:100}}
+        </p>
+      </div>
+    </a>
   </div>
-  </a>
+  {% endfor %}
 </div>
-</div>
-{% endfor %}
 {% endblock %}

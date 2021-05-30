@@ -4,7 +4,7 @@
 
 {% load crispy_forms_tags %}
 {% block content %} 
-<div class="d-flex align-items-center justify-content-center ml-5" style="height: 80%;" >
+<div class="d-flex align-items-center justify-content-center" style="height: 80%;" >
     <form class="form-rows" method="POST">
         {% csrf_token %}
         {{form|crispy}}
