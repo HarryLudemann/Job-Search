@@ -53,7 +53,7 @@
   {% for item in jobs %}
   <div class="card bg-{{theme}} text-{% if theme == "light" %}dark{% else %}light{%endif%}">
     <a href="/job/{{item.id}}">
-      <div class="card-body">
+      <div class="card-body card bg-{{theme}} text-{% if theme == "light" %}dark{% else %}light{%endif%}">
         <h5 class="card-title">{{item.title|upper}}</h5>
         <p class="card-text">
           {{item.location}} - {{item.hours}} - {{item.careertype}} - Listed: {{item.date}} <br>
