@@ -9,7 +9,7 @@
     <h4 class="card-title">{{item.title|upper}}</h4>
     <h6> {{item.location}} - {{item.hours}} - {{item.careertype}}</h6>
     <p class="card-text">
-    {{item.description}}
+    {{item.description|safe}}
     </p>
     {% if student %}
         <button type="button" class="btn btn-primary">Apply</button>
