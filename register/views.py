@@ -78,15 +78,15 @@ def editprofile(response):
                 userid=response.user.id, student=occupationform.cleaned_data["student"], employer=occupationform.cleaned_data["employer"])
             obj.save()
 
-        obj = Themes.objects.all()
-        if (obj.filter(userid=response.user.id).exists()):
-            obj.filter(userid=response.user.id).delete()
+        # obj = Themes.objects.all()
+        # if (obj.filter(userid=response.user.id).exists()):
+        #     obj.filter(userid=response.user.id).delete()
 
-        themeform = ThemeForm(response.POST)
-        if themeform.is_valid():
-            print(str(response.user.id))
-            obj = Themes(theme=themeform.cleaned_data["theme"], userid=response.user.id)
-            obj.save()
+        # themeform = ThemeForm(response.POST)
+        # if themeform.is_valid():
+        #     print(str(response.user.id))
+        #     obj = Themes(theme=themeform.cleaned_data["theme"], userid=response.user.id)
+        #     obj.save()
         messages.success(response, 'Settings Successfully Updated')
         return redirect("/")
     else:
