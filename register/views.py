@@ -48,12 +48,11 @@ def CheckEmployer(response):
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
-      
         if form.is_valid():
             form.save()
             user = User.objects.create_user('form.cleaned_data["username"]',form.cleaned_data["email"] , form.cleaned_data["password"])
             user.save()
-            return redirect("home")
+            return redirect("/")
     else:
         form = RegisterForm()
         return render(response, "register/register.html", {"form": form, 'theme':CheckDarkTheme(response)})
