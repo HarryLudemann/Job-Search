@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '(-pklp2vyme_mj99dvt#gzc!j+v5_$$7=uj!s&j@ug^_qix0wb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['studentjobsearch.herokuapp.com']
 DEBUG_PROPAGATE_EXCEPTIONS = True
