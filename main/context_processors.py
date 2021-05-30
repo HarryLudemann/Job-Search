@@ -1,3 +1,5 @@
+from register.models import Themes
+
 # Checks theme
 def CheckDarkTheme(response):
     obj = Themes.objects.all()
