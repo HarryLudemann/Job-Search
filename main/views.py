@@ -5,6 +5,7 @@ from main.models import Locations, CareerType, TimePerWeek, Jobs
 from register.models import Occupation
 from django.contrib import messages #import messages
 from register.models import Themes
+from django.contrib.auth.decorators import login_required
 
 # Checks theme
 def CheckDarkTheme(response):
@@ -69,6 +70,7 @@ def home(response):
         n = " "
         return render(response, "main/home.html", {"MainSearchForm":Mainform, "employer":CheckEmployer(response), "theme":CheckDarkTheme(response)})
 
+@login_required
 def addjob(response):
     if response.method == "POST":
         addjobform = AddJob(response.POST)
@@ -103,7 +105,7 @@ def job(response, id):
 def about(response):
     return render(response, "main/about.html", {"employer":CheckEmployer(response), "theme":CheckDarkTheme(response)})
 
-
+@login_required
 def studentreg(response):
     if response.method == "POST":
         messages.success(response, 'A application has successfully been submitted')
@@ -112,7 +114,7 @@ def studentreg(response):
         form = StudentApplication()
         return render(response, "main/applystudent.html", {"employer":CheckEmployer(response), "form":form, "theme":CheckDarkTheme(response)})
 
-
+@login_required
 def employerreg(response):
     if response.method == "POST":
         messages.success(response, 'A application has successfully been submitted')
