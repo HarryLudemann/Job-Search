@@ -100,16 +100,17 @@ def editprofile(response):
         else:
             occupationform = OccupationForm()
 
-        # if (obj.filter(userid=response.user.id).exists()):
-        #     obj = obj.filter(userid=response.user.id)
-        #     for item in obj:  # Can only be one, obj is only iterable
-        #         if (item.theme == 'dark'):
-        #             theme = 2
-        #         else:
-        #             theme = 1
-        #         themeform = ThemeForm(initial={"theme": theme})
-        # else:
-        themeform = ThemeForm()
+        obj = Themes.objects.all()
+        if (obj.filter(userid=response.user.id).exists()):
+            obj = obj.filter(userid=response.user.id)
+            for item in obj:  # Can only be one, obj is only iterable
+                if (item.theme == 'dark'):
+                    theme = 2
+                else:
+                    theme = 1
+                themeform = ThemeForm(initial={"theme": theme})
+        else:
+            themeform = ThemeForm()
         return render(response, "register/editprofile.html", {"form": form, "occupation": occupationform, "employer": CheckEmployer(response), "themeform": themeform, 'theme':CheckDarkTheme(response)})
 
         # "username":response.user.username, "email":response.user.email
