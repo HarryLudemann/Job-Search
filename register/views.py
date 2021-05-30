@@ -16,6 +16,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages #import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Checks theme
 def CheckDarkTheme(response):
@@ -52,12 +53,12 @@ def register(response):
             form.save()
             user = User.objects.create_user('form.cleaned_data["username"]',form.cleaned_data["email"] , form.cleaned_data["password"])
             user.save()
-        return redirect("/")
+            return redirect("/")
     else:
         form = RegisterForm()
         return render(response, "register/register.html", {"form": form, 'theme':CheckDarkTheme(response)})
 
-
+@login_required
 def editprofile(response):
     # user = User.objects.get(username = response.user.username)
     if response.method == "POST":
@@ -146,7 +147,7 @@ def password_reset_request(request):
 def passworddone(request):
     return redirect("/", {"theme":CheckDarkTheme(request)})
 
-
+@login_required
 def passwordchange(request):
     passwordchangeform = PasswordChangeForm()
     return render(request, "register/change-password.html",{"form":passwordchangeform, "theme":CheckDarkTheme(request)})
