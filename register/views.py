@@ -46,19 +46,15 @@ def CheckEmployer(response):
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
-        themeform = ThemeForm(response.POST)
+      
         if form.is_valid():
             form.save()
-        if themeform.is_valid():
-            obj = Themes(
-                userid=response.user.id, theme=themeform.cleaned_data["theme"])
-            obj.save()
+     
         return redirect("/")
     else:
         form = RegisterForm()
-        themeform = ThemeForm()
 
-    return render(response, "register/register.html", {"form": form, "themeform":themeform, 'theme':CheckDarkTheme(response)})
+    return render(response, "register/register.html", {"form": form, 'theme':CheckDarkTheme(response)})
 
 
 def editprofile(response):
