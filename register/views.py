@@ -15,6 +15,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages #import messages
+from django.contrib.auth.models import User
 
 # Checks theme
 def CheckDarkTheme(response):
@@ -49,8 +50,9 @@ def register(response):
       
         if form.is_valid():
             form.save()
-     
-        return redirect("/")
+            user = User.objects.create_user('form.cleaned_data["username"]',form.cleaned_data["email"] , form.cleaned_data["password"])
+            user.save()
+            return redirect("/")
     else:
         form = RegisterForm()
 
