@@ -4,8 +4,8 @@
 
 {% block content %} 
 {% for item in job %}
-<div class="card m-5">
-  <div class="card-body">
+<div class="card m-5 bg-{{theme}} text-{% if theme == "light" %}dark{% else %}light{%endif%}">
+  <div class="card-body bg-{{theme}} text-{% if theme == "light" %}dark{% else %}light{%endif%}">
     <h4 class="card-title">{{item.title|upper}}</h4>
     <h6> {{item.location}} - {{item.hours}} - {{item.careertype}}</h6>
     <p class="card-text">

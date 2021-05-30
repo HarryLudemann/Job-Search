@@ -63,7 +63,7 @@ def home(response):
                 
             if (Mainform.cleaned_data["careertype"] != None):
                 jobobjects = jobobjects.filter(careertype=Mainform.cleaned_data["careertype"])
-            return render(response, "main/jobs.html", {"MainSearchForm":Mainform, "jobs":jobobjects, "employer":CheckEmployer(response)})
+            return render(response, "main/jobs.html", {"MainSearchForm":Mainform, "jobs":jobobjects, "employer":CheckEmployer(response), "theme":CheckDarkTheme(response)})
     else:
         Mainform = SearchJob(initial={"locations":locations, "careers":careertype, "hours":hours})
         n = " "
