@@ -67,7 +67,7 @@ def home(response):
     else:
         Mainform = SearchJob(initial={"locations":locations, "careers":careertype, "hours":hours})
         n = " "
-        return render(response, "main/home.html", {"MainSearchForm":Mainform, "employer":CheckEmployer(response)})
+        return render(response, "main/home.html", {"MainSearchForm":Mainform, "employer":CheckEmployer(response), "theme":CheckDarkTheme(response)})
 
 def addjob(response):
     if response.method == "POST":
@@ -88,20 +88,20 @@ def addjob(response):
         else:  
             print('Adding Job Failed')
             addjobform = AddJob()
-            return render(response, "main/addjob.html", {"addjobform":addjobform, "employer":CheckEmployer(response)})
+            return render(response, "main/addjob.html", {"addjobform":addjobform, "employer":CheckEmployer(response), "theme":CheckDarkTheme(response)})
     else:
         addjobform = AddJob()
-        return render(response, "main/addjob.html", {"addjobform":addjobform, "employer":CheckEmployer(response)})
+        return render(response, "main/addjob.html", {"addjobform":addjobform, "employer":CheckEmployer(response), "theme":CheckDarkTheme(response)})
 
 
 def job(response, id):
     obj = Jobs.objects.all()
     jobobjects = obj.filter(id=id)  
-    return render(response, "main/job.html", {"job":jobobjects, "employer":CheckEmployer(response), "student":CheckStudent(response)})
+    return render(response, "main/job.html", {"job":jobobjects, "employer":CheckEmployer(response), "student":CheckStudent(response), "theme":CheckDarkTheme(response)})
 
 
 def about(response):
-    return render(response, "main/about.html", {"employer":CheckEmployer(response)})
+    return render(response, "main/about.html", {"employer":CheckEmployer(response), "theme":CheckDarkTheme(response)})
 
 
 def studentreg(response):
@@ -110,7 +110,7 @@ def studentreg(response):
         return redirect("/home")
     else:
         form = StudentApplication()
-        return render(response, "main/applystudent.html", {"employer":CheckEmployer(response), "form":form})
+        return render(response, "main/applystudent.html", {"employer":CheckEmployer(response), "form":form, "theme":CheckDarkTheme(response)})
 
 
 def employerreg(response):
@@ -119,5 +119,5 @@ def employerreg(response):
         return redirect("/home")
     else:
         form = EmployerApplication()
-        return render(response, "main/applyemployer.html", {"employer":CheckEmployer(response), "form":form})
+        return render(response, "main/applyemployer.html", {"employer":CheckEmployer(response), "form":form, "theme":CheckDarkTheme(response)})
 
