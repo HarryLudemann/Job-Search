@@ -4,8 +4,8 @@
 
 {% load crispy_forms_tags %}
 {% block content %} 
-<div class="card">
-    <form class="form-inline ml-2 mt-2" method="POST" action="/">
+<div class="card bg-{{theme}} text-{% if theme == "light" %}dark{% else %}light{%endif%}">
+    <form class="form-inline ml-2 mt-2 " method="POST" action="/">
         {% csrf_token %}
         <div class="mr-2">
             {{ MainSearchForm.job|as_crispy_field }}
