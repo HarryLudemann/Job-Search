@@ -15,6 +15,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages #import messages
+from django.contrib.auth.models import User
 
 # Checks theme
 def CheckDarkTheme(response):
@@ -46,19 +47,15 @@ def CheckEmployer(response):
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
-        themeform = ThemeForm(response.POST)
+      
         if form.is_valid():
             form.save()
-        if themeform.is_valid():
-            obj = Themes(
-                userid=response.user.id, theme=themeform.cleaned_data["theme"])
-            obj.save()
+            user = User.objects.create_user('form.cleaned_data["username"]',form.cleaned_data["email"] , form.cleaned_data["password"])
+            user.save()
         return redirect("/")
     else:
         form = RegisterForm()
-        themeform = ThemeForm()
-
-    return render(response, "register/register.html", {"form": form, "themeform":themeform, 'theme':CheckDarkTheme(response)})
+        return render(response, "register/register.html", {"form": form, 'theme':CheckDarkTheme(response)})
 
 
 def editprofile(response):
@@ -148,3 +145,8 @@ def password_reset_request(request):
 
 def passworddone(request):
     return redirect("/", {"theme":CheckDarkTheme(request)})
+
+
+def passwordchange(request):
+    passwordchangeform = PasswordChangeForm()
+    return render(request, "register/change-password.html",{"form":passwordchangeform, "theme":CheckDarkTheme(request)})
