@@ -12,6 +12,7 @@ def CheckDarkTheme(response):
         return 'light'
 
 def add_variable_to_context(request):
+    Theme = CheckDarkTheme(request)
     return {
-        'theme': 'dark'
+        'theme': Theme
     }
