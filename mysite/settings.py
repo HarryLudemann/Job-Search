@@ -162,7 +162,3 @@ STATICFILES_STORAGE = '.storage.WhiteNoiseStaticFilesStorage' # Read point 3 for
 import django_heroku
 django_heroku.settings(locals())
 
-from whitenoise.storage import CompressedManifestStaticFilesStorage
-
-class WhiteNoiseStaticFilesStorage(CompressedManifestStaticFilesStorage):
-    manifest_strict = False
