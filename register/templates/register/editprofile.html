@@ -8,11 +8,9 @@
     <form method="POST" class="form-group">
         {% csrf_token %}
         {{form|crispy}}
-        {% csrf_token %}
         <p> Check Boxes only shown for development, will only be accessable by admin in production </p>
         {{ occupation.employer|as_crispy_field }}
         {{ occupation.student|as_crispy_field }}
-         {% csrf_token %}
         {{themeform.theme|as_crispy_field }}
         <button type="submit" class ="btn btn-success">Update</button>
     </form>
