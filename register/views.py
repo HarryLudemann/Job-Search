@@ -142,7 +142,7 @@ def password_reset_request(request):
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
             messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
-            return redirect("/password_reset/done/")
+            return redirect("/")
     password_reset_form = PasswordResetForm()
     return render(request, "register/password_reset.html", {"password_reset_form": password_reset_form, "theme":CheckDarkTheme(request)})
 
