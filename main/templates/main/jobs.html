@@ -5,7 +5,7 @@
 {% load crispy_forms_tags %}
 {% block content %} 
 <div class="card">
-    <form class="form-inline ml-2" method="POST" action="/">
+    <form class="form-inline ml-2 mt-2" method="POST" action="/">
         {% csrf_token %}
         <div class="mr-2">
             {{ MainSearchForm.job|as_crispy_field }}
