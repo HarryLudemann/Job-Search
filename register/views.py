@@ -149,14 +149,3 @@ def password_reset_request(request):
 def passworddone(request):
     return redirect("/", {"theme":CheckDarkTheme(request)})
 
-def passwordchange(request):
-    if request.method == "POST":
-        password_reset_form = PasswordResetForm(request.POST)
-        if password_reset_form.is_valid():
-            password_reset_form.save()
-            messages.success(request, 'Password Successfully Changed')
-            return redirect("/")
-
-    else:
-        passwordchangeform = PasswordChangeForm()
-        return render(request, "register/change-password.html", {"form":passwordchangeform, "theme":CheckDarkTheme(request)})
