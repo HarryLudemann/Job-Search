@@ -20,7 +20,7 @@ from django.contrib.auth import views as auth_views #import this
 
 urlpatterns = [
     path('', include('main.urls')),
-    path('register/', v.register, name="register", success_url="/"),
+    path('register/', v.register, name="register"),
     path('editprofile/', v.editprofile, name="editprofile"),
     path('password/', auth_views.PasswordChangeView.as_view(template_name="register/change-password.html")),
     path('password/done',v.passworddone, name="passworddone"),
