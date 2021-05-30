@@ -52,7 +52,7 @@ def register(response):
             form.save()
             user = User.objects.create_user('form.cleaned_data["username"]',form.cleaned_data["email"] , form.cleaned_data["password"])
             user.save()
-            return redirect("/")
+        return redirect("/")
     else:
         form = RegisterForm()
 
