@@ -161,3 +161,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = '.storage.WhiteNoiseStaticFilesStorage' # Read point 3 for details about this
 import django_heroku
 django_heroku.settings(locals())
+
+from whitenoise.storage import CompressedManifestStaticFilesStorage
+
+class WhiteNoiseStaticFilesStorage(CompressedManifestStaticFilesStorage):
+    manifest_strict = False
