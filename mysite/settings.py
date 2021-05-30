@@ -156,8 +156,9 @@ STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'),
    ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_STORAGE = '.storage.WhiteNoiseStaticFilesStorage' # Read point 3 for details about this
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 import django_heroku
 django_heroku.settings(locals())
