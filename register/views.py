@@ -97,6 +97,8 @@ def editprofile(response):
             for item in obj:  # Can only be one, obj is only iterable
                 occupationform = OccupationForm(
                     initial={"student": item.student, "employer": item.employer})
+        else:
+            occupationform = OccupationForm()
         if (obj.filter(userid=response.user.id).exists()):
             obj = obj.filter(userid=response.user.id)
             for item in obj:  # Can only be one, obj is only iterable
@@ -106,8 +108,7 @@ def editprofile(response):
                     theme = 1
                 themeform = ThemeForm(initial={"theme": theme})
         else:
-            occupationform = OccupationForm()
-            themeform = ThemeForm(instance=response.user)
+            themeform = ThemeForm()
         return render(response, "register/editprofile.html", {"form": form, "occupation": occupationform, "employer": CheckEmployer(response), "themeform": themeform, 'theme':CheckDarkTheme(response)})
 
         # "username":response.user.username, "email":response.user.email
