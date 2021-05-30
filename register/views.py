@@ -8,7 +8,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.models import User
 from django.views import generic
 from register.models import Occupation, Themes
-from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import PasswordResetForm, PasswordChangeForm
 from django.template.loader import render_to_string
 from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
@@ -145,3 +145,14 @@ def password_reset_request(request):
             return redirect("/password_reset/done/")
     password_reset_form = PasswordResetForm()
     return render(request, "register/password_reset.html", {"password_reset_form": password_reset_form, "theme":CheckDarkTheme(request)})
+
+def password_reset_request(request):
+    if request.method == "POST":
+        passwordchangeform = PasswordChangeForm(request.POST)
+        if passwordchangeform.is_valid():
+            passwordchangeform.save()
+            messages.success(request, 'Password Successfully Changed.')
+            return redirect('/')
+    else:
+        passwordchangeform = PasswordChangeForm()
+    return render(request, "register/password_reset.html", {"form": passwordchangeform, "theme":CheckDarkTheme(request)})
