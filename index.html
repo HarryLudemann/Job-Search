@@ -1,10 +1,68 @@
-{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Bootstrap CSS CDN -->
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <title>Student Job Search - About</title>
+    <style>
+      @media screen and (min-width: 900px) {
+        .containermargin {
+          padding: 50px 150px 0px 150px;
+        }
+      }
+    </style>
+  </head>
+  <body style="filter: invert(0)">
+  <!-- Nav -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" style="margin-left:50px" href="/">Student Job Search</a>
+            <!-- <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            >
+            <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul> -->
+            </div>
+        </div>
+    </nav>
 
-{% block title %} Job Search {% endblock %}
-
-{% load crispy_forms_tags %}
-{% block content %} 
-<div class="container-fluid containermargin">
+    <div class="container-fluid containermargin">
       <h3 class="h3 m-5">Project Methodology Statement:</h3>
       <p class="m-5">We are taking a Prototype methodology approach for our project. We have chosen this methodology as this gives us the best flexibility, allowing us to go from iteration to development regularly. We favour this as we often find ourselves wanting to change something during development, to match developing conditions, adapt to issues or just including new ideas. This methodology also focuses on improved quality of the product, as the process involves more stakeholder/user interaction feedback and regular evaluation, and less risk as it promises no deployable end product.</h3>
       
@@ -118,4 +176,11 @@
         </tbody>
       </table>
     </div>
-{% endblock %}
+    
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
+    ></script>
+  </body>
+</html>
