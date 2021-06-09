@@ -4,7 +4,7 @@
 
 {% load crispy_forms_tags %}
 {% block content %} 
-<div class="container-fluid containermargin">
+<div class="container-fluid containermargin text-{% if theme == "light" %}dark{% else %}light{%endif%}">
       <h3 class="h3 m-5">Project Methodology Statement:</h3>
       <p class="m-5">We are taking a Prototype methodology approach for our project. We have chosen this methodology as this gives us the best flexibility, allowing us to go from iteration to development regularly. We favour this as we often find ourselves wanting to change something during development, to match developing conditions, adapt to issues or just including new ideas. This methodology also focuses on improved quality of the product, as the process involves more stakeholder/user interaction feedback and regular evaluation, and less risk as it promises no deployable end product.</h3>
       
